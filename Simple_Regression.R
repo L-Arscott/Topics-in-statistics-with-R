@@ -62,3 +62,23 @@ print(beta_se)
 alpha_var = error_var/n + mean(test_x)^2 * beta_var
 alpha_se = sqrt(alpha_var)
 print(alpha_se)
+
+
+###
+# The t-statistic
+###
+# Calculate t-values
+alpha_t = alpha/alpha_se
+beta_t = beta/beta_se
+
+print(alpha_t)
+print(beta_t)
+
+# Calculate the probabilities of observing such extreme t-values
+# We use the inbuilt function pt (cumulative function for the t-distribution)
+alpha_p_t = pt(alpha_t, 3)*2
+beta_p_t = pt(-beta_t, 3)*2
+
+print(alpha_p_t)
+print(beta_p_t)
+
