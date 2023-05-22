@@ -1,3 +1,7 @@
+### Variograms (parana dataset with geoR)
+library(geoR)
+
+# Creation of variogram function
 cloud_variogram <- function (my_geodata) {
   n_obs <- length(my_geodata$data)
   n_comps <- n_obs * (n_obs - 1) / 2
