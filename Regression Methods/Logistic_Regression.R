@@ -41,7 +41,7 @@ model <- glm(Class ~ Eccentricity,family=binomial(link='logit'),data=train_data)
 summary(model)
 
 
-## Deviance: reproduce model values
+## Deviance: reproduce model values (likelihood ratio test)
 # Deviance of fitted model
 train_data$fit <- predict(model, train_data, type='response')
 train_data$fit_likelihood <- ifelse(train_data$Class == 1,
