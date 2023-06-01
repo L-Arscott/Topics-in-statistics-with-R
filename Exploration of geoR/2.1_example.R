@@ -13,8 +13,9 @@ exp_peak <- function (peak_x, peak_y, sz, n){
   y_coords <- matrix(rep(1:n, times = n), nrow = n, ncol = n)
   dist_mat <- sqrt((x_coords - matrix(peak_x, n, n))^2 
                    + (y_coords - matrix(peak_y, n, n))^2)
+  
   peak_mat <- sz * exp(-dist_mat)
-  print(peak_mat)
+  
   return(peak_mat)
 }
 
@@ -22,6 +23,7 @@ get_val_mat <- function (x, y, n = 10) {
   val_mat <- lin_dep(5, 0, n)
   val_mat <- val_mat + exp_peak(3, 2, 50, n) + exp_peak(7, 7, -25, n) + 
     exp_peak(7, 2, 50, n) + exp_peak(5, 5, -25, n)
+  
   return(val_mat)
 }
 
@@ -41,7 +43,9 @@ plot(geor_data, trend = "1st")  # peaks we placed appear clearly
 plot(variog(geor_data, trend = "1st"))
 
 our_variogram <- variog(geor_data, trend = "1st", max.dist = 6)  # Employ max
-plot(our_variogram)  # Notice ceiling affect from around 3.5
+plot(our_variogram) 
+# Notice ceiling affect from around 3.5 (the "range") at semivariance just under
+# 100 (the "sill").
 
 # We may plot variograms in different directions to test for anisotropy
 # Test a specific direction with chosen tolerance
