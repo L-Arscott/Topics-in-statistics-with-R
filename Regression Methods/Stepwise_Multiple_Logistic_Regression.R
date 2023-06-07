@@ -144,5 +144,10 @@ model4.2 <- glm(Class ~ Solidity + Roundness + Eccentricity,
 summary(model4.1)$deviance - summary(model4)$deviance # Keep
 summary(model4.2)$deviance - summary(model4)$deviance # Keep
 
-# We will stop here for now, and use model 4:
-summary(model4)
+# We will stop here for now, and use model 2, which uses features
+# 'Aspect_Ration' and 'Solidity'. Model 2 strikes a good balance between
+# accuracy and number of features.
+# Model 4 ('Aspect_Ration' + 'Solidity' + 'Roundness' + 'Eccentricity') scores
+# only very slightly higher on the accuracy scale. Model 1 could also be
+# considered for its greater simplicity at low cost.
+summary(model2)
