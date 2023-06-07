@@ -57,8 +57,6 @@ print(-2 * null_log_likelihood)
 
 
 ## Assess accuracy on test data
+## Assess accuracy on test data
+## Assess accuracy on test data
 test_data$predictions <- predict(model, test_data, type='response')
-test_data$predictions <- ifelse(test_data$predictions > 0.5,1,0)
-
-misClasificError <- mean(test_data$predictions != test_data$Class)
-print(paste('Accuracy',1-misClasificError))
