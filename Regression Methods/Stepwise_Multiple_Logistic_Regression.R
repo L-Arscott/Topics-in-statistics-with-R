@@ -24,8 +24,9 @@ conn <- dbConnect(
 query <- "SELECT *
   FROM pumpkin_seeds_dataset"
 
-# Set pumpkin class to 0 or 1
 result <- dbGetQuery(conn, query)
+
+# Set pumpkin class to 0 or 1
 result$Class <- ifelse(result$Class == "Çerçevelik", 0,
                        ifelse(result$Class == "Ürgüp Sivrisi", 1, NA))
 
@@ -49,6 +50,7 @@ acc <- function(our_model){
 }
 
 
+## Forward selection, backward elimination
 ## Compare log-likelihood ratios for univariate logistic regression models
 # For each variable, print the ll-ratio (against null model)
 for (variable in variables){
