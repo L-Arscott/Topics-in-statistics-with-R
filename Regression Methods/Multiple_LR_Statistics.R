@@ -20,10 +20,10 @@ n_parameters <- 3
 dof <- n_obs - n_parameters  # 3 fitted parameters
 df$estimates <- fitted(model)
 
-sum_of_squared_residuals <- sum((df$estimates - df$test_y)^2)
-residual_var <- sum_of_squared_residuals / dof
-residual_se <- sqrt(residual_var)
-print(residual_se)
+sum_of_squared_residuals_model <- sum((df$estimates - df$test_y)^2)
+residual_var_model <- sum_of_squared_residuals_model / dof
+residual_se_model <- sqrt(residual_var_model)
+print(residual_se_model)
 
 ## Reproducing multiple R squared
 # Measures the amount of variation in the response variable that can be
@@ -31,8 +31,9 @@ print(residual_se)
 # We take the sum of squared residuals around the mean, and compare to the sum
 # of squared residuals around the fitted model. This varies from 1 (no
 # difference) and can tend to 0 (residuals far smaller for fitted model)
-sum_of_squares <- sum((df$estimates - mean(df$test_y))^2)
-multiple_r_squared <- 1 - sum_of_squared_residuals / sum_of_squares
+sum_of_squared_residuals_mean <- sum((df$estimates - mean(df$test_y))^2)
+multiple_r_squared <- 1 - 
+  sum_of_squared_residuals_model / sum_of_squared_residuals_mean
 print(multiple_r_squared)
 
 ## Reproducing adjusted R-squared
@@ -45,6 +46,5 @@ print(adjusted_r_squared)
 # The F-statistic tests H_0: all parameters are 0 against
 # H_1: at least one parameter is not 0
 corrected_dof <- n_parameters - 1 
-mean_sum_squares_reg <- sum_of_squares / corrected_dof
-
-mean_sum_squares_reg / residual_var
+msr <- sum_of_squared_residuals_mean / corrected_dof
+msr / residual_var_model
