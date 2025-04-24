@@ -1,0 +1,7 @@
+# R
+.idea/
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+renv/
