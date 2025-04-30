@@ -1,0 +1,10 @@
+[project]
+name = "topics_in_statistics_with_r"
+version = "0.0.1"
+description = "Exploring topics in statistics and R code."
+authors = [
+  { name = "Lawrence Arscott", email = "arscott.lawrence@gmail.com" },
+]
+dependencies = [
+  "pandas"
+]
