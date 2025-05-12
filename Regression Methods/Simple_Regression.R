@@ -6,18 +6,22 @@ test_y <- c(2.8, 6.1, 11.9, 19, 21.8)
 df = data.frame(test_x, test_y)
 n = nrow(df)
 
-# Compute population variance in x manually
-popvar <- function (x) mean((x-mean(x))^2)
-var_x = popvar(df[,1])
-cat(var_x)
+# Estimate population variance in x
+estimate_population_var <- function(x) sum((x-mean(x))^2) / (length(x) - 1)
+var_x = estimate_population_var(df[,1])
+sprintf("Estimated population variance for x is %.3f", var_x)
 
-# Compute population covariance in x, y
-popcov <- function (x, y) mean(x*y) - mean(x) * mean(y)
-cov_xy = popcov(test_x, test_y)
+# Estimate population covariance in x, y
+estimate_population_cov <- function (x, y) {
+  sum((x - mean(x)) * (y - mean(y))) / (length(x) - 1)
+}
+cov_xy = estimate_population_cov(test_x, test_y)
+sprintf("Estimated covariance in x and y is %.3f", cov_xy)
 
 # Calculate slope and intercept
 beta <- cov_xy/var_x
 alpha <- mean(df[,2]) - beta * mean(df[,1])
+sprintf("Slope is %.3f and intercept is %.3f.", beta, alpha)
 
 # Plot our values and line of best fit:
 plot(test_x, test_y, xlim = c(0, 8), ylim = c(0, 22), main = "Line of best fit")
@@ -25,8 +29,8 @@ abline(alpha, beta)
 
 # We could have used inbuilt functions:
 cov(test_x, test_y) / var(test_x)
-# Note R returns sample variance/covariance while we used population var/cov
-# It does not matter in our case since factors get cancelled out
+# Note in R the standard functions cov(), var() estimate population 
+# variance/covariance from samples.
 
 # Even simpler yet, we may use R's inbuilt simple LR function lm:
 model <- lm(test_y ~ test_x)
