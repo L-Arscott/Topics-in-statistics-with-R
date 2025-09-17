@@ -6,5 +6,5 @@ authors = [
   { name = "Lawrence Arscott", email = "arscott.lawrence@gmail.com" },
 ]
 dependencies = [
-  "pandas"
+  "numpy", "pandas"
 ]
