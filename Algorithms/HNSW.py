@@ -53,7 +53,9 @@ def find_nearest_to_target(x: float, y: float, data: pd.DataFrame, n_neighbours=
     return nearest_neighbours
 
 
-def greedy_walk(start_index: int, target_x: float, target_y: float, data: pd.DataFrame, level: int) -> int:
+def greedy_walk(
+    start_index: int, target_x: float, target_y: float, data: pd.DataFrame, level: int
+) -> int:
     """
     Performs greedy walk towards target.
 
@@ -69,9 +71,7 @@ def greedy_walk(start_index: int, target_x: float, target_y: float, data: pd.Dat
     walk_indices = [start_index]
     while True:
         neighbours = data.loc[position, "neighbours"][level]
-        nn = find_nearest_to_target(
-            target_x, target_y, data.loc[neighbours + [position]]
-        )[0]
+        nn = find_nearest_to_target(target_x, target_y, data.loc[neighbours + [position]])[0]
 
         if nn == position:
             print(walk_indices)
