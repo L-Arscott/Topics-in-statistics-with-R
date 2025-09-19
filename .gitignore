@@ -5,3 +5,6 @@
 .RData
 .Ruserdata
 renv/
+
+# Distribution / packaging
+*.egg-info/
