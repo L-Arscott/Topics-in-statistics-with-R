@@ -11,3 +11,6 @@ dependencies = [
 
 [project.optional-dependencies]
 development = ["black[d]"]
+
+[tool.setuptools.packages.find]
+include = ["Topics"]
