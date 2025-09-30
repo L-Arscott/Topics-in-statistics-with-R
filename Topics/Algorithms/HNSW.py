@@ -20,10 +20,10 @@ def assign_neighbours(data: pd.DataFrame, max_neighbours) -> pd.DataFrame:
 
     :return: Dataframe of ndoes with new "neighbours" column.
     """
-    top_level = max(data["level"].tolist())
+    top_level = get_top_level(data)
     data_with_neighbours = copy.copy(data)
     for level in range(top_level + 1):
-        level_data = data[data["level"] >= level]
+        level_data = get_level_data(data, level=level)
         level_nodes = level_data.index.tolist()
         for _, node in level_data.iterrows():
             node["neighbours"][level] = random.sample(
@@ -59,6 +59,14 @@ def find_nearest_to_target(
     nearest_neighbours = [n.name for _, n in top_entries.iterrows()]
 
     return nearest_neighbours
+
+
+def get_level_data(data: pd.DataFrame, level: int) -> pd.DataFrame:
+    return copy.copy(data[data["level"] >= level])
+
+
+def get_top_level(data: pd.DataFrame) -> int:
+    return max(data["level"].tolist())
 
 
 def greedy_walk(
