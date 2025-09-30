@@ -6,5 +6,8 @@
 .Ruserdata
 renv/
 
+# Manimations
+media/
+
 # Distribution / packaging
 *.egg-info/
