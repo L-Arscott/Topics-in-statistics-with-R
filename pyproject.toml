@@ -11,6 +11,7 @@ dependencies = [
 
 [project.optional-dependencies]
 development = ["black[d]"]
+animation = ["manim"]
 
 [tool.setuptools.packages.find]
 include = ["Topics"]
